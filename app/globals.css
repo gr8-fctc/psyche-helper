@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
+/*
+:root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
+*/
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -18,18 +19,43 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+  background: #fff7f4;
+}
 
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-end-rgb: 69, 69, 69;
+    --background-start-rgb: 96, 96, 96;
+  }
+}
+
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+
+
+#__next {
+  background: blue;
+  height: 100%;
+}
+/*
+body {
+  background-image: url('https://github.com/emladevops/vanh/blob/main/327754833_607730340686081_6827672687988153441_n.jpg?raw=true');
+  background-size: cover
+}
+*/
+/*
 body  {
   min-height: 100vh;
   min-height: -webkit-fill-available;
-  background-color: #fef2f2
+  background-color: #fff7f4
 }
+*/
 
 
