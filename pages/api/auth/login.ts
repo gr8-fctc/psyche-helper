@@ -1,11 +1,11 @@
-import { NextApiRequest } from 'next';
+import { NextApiRequest } from "next";
 //import  UserModel from '@/misc/models/User';
-import dbConnect from '@/lib/dbConnect';
-import bcrypt from 'bcrypt';
-import UModel from '@/misc/models/User';
-import jwt, { Secret, JwtPayload, SignOptions, sign } from 'jsonwebtoken';
-import * as fs from 'fs';
-import * as path from 'path';
+import dbConnect from "@/lib/dbConnect";
+import bcrypt from "bcrypt";
+import UModel from "@/misc/models/User";
+import jwt, { Secret, JwtPayload, SignOptions, sign } from "jsonwebtoken";
+import * as fs from "fs";
+import * as path from "path";
 
 async function writeData(username: string, email: string, password: string) {
   await dbConnect();
@@ -25,20 +25,20 @@ export default async function handler(req: any, res: any) {
   };
 
   const signInOptions: SignOptions = {
-    expiresIn: '24h'
+    expiresIn: "24h",
   };
 
   const token = jwt.sign(payload, "privateKey", signInOptions);
 
   dbConnect();
 
-  const user = await UModel.findOne({email})
+  const user = await UModel.findOne({ email });
 
-  if(await user && (await bcrypt.compare(password, user.password))) {
+  if ((await user) && (await bcrypt.compare(password, user.password))) {
     const token = jwt.sign(payload, "privateKey", signInOptions);
     user.token = token;
     await user.save();
-    
+
     res.status(200).json(user);
   }
 

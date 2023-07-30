@@ -1,11 +1,11 @@
-import { NextApiRequest } from 'next';
+import { NextApiRequest } from "next";
 //import  UserModel from '@/misc/models/User';
-import dbConnect from '@/lib/dbConnect';
-import bcrypt from 'bcrypt';
-import UModel from '@/misc/models/User';
-import jwt, { Secret, JwtPayload, SignOptions, sign } from 'jsonwebtoken';
-import * as fs from 'fs';
-import * as path from 'path';
+import dbConnect from "@/lib/dbConnect";
+import bcrypt from "bcrypt";
+import UModel from "@/misc/models/User";
+import jwt, { Secret, JwtPayload, SignOptions, sign } from "jsonwebtoken";
+import * as fs from "fs";
+import * as path from "path";
 
 async function writeData(username: string, email: string, password: string) {
   await dbConnect();
@@ -24,17 +24,23 @@ export default async function handler(req: any, res: any) {
     password: password,
   };
 
-  const privateKey = fs.readFileSync(path.join(__dirname, './../../../../../private.pem'));
+  const privateKey = fs.readFileSync(
+    path.join(__dirname, "./../../../../../private.pem")
+  );
 
   const signInOptions: SignOptions = {
-    expiresIn: '24h'
+    expiresIn: "24h",
   };
 
   const token = jwt.sign(payload, "privateKey", signInOptions);
 
   dbConnect();
-  UModel.create({username: String(username), email: String(email), password: String(saltedPassword), token: String(token)});
-
+  UModel.create({
+    username: String(username),
+    email: String(email),
+    password: String(saltedPassword),
+    token: String(token),
+  });
 
   res.send("Successfully registered user");
 }

@@ -22,7 +22,6 @@ body {
   background: #fff7f4;
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 0, 0, 0;
@@ -31,14 +30,11 @@ body {
   }
 }
 
-
 html,
 body {
   margin: 0;
   height: 100%;
 }
-
-
 
 #__next {
   background: blue;
@@ -57,5 +53,3 @@ body  {
   background-color: #fff7f4
 }
 */
-
-

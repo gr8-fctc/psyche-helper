@@ -1,3 +1,3 @@
-import { Livvic } from '@next/font/google'
+import { Livvic } from "@next/font/google";
 
-export const iloveyou = Livvic({weight: "300"});
+export const iloveyou = Livvic({ weight: "300" });
